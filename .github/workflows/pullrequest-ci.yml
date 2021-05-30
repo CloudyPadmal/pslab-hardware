@@ -92,3 +92,14 @@ jobs:
           git add .
           git commit -m "chore: updating board diff images for #${{github.event.number}}"
           git push origin diff-img --quiet > /dev/null
+
+      - uses: actions/github-script@v4
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Thanks for sharing!'
+            })
