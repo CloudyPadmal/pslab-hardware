@@ -1,7 +1,7 @@
-name: pslab-hardware
+name: pull-request-builds
 
 on:
-  push:
+  pull_request:
     branches: [ pslab-v6 ]
 
 jobs:
@@ -89,9 +89,6 @@ jobs:
           composite -stereo 0 old-signal.png new-signal.png diff-signal.png
           composite -stereo 0 old-power.png new-power.png diff-power.png
           rm -rf old-* new-*
-          git checkout --orphan temporary
           git add .
-          git commit -m "chore: updating board diff images"
-          git branch -D diff-img
-          git branch -m diff-img
-          git push origin diff-img -f --quiet > /dev/null
+          git commit -m "chore: updating board diff images for #${{github.event.number}}"
+          git push origin diff-img --quiet > /dev/null
