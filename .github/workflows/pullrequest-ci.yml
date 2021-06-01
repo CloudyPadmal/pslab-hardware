@@ -107,11 +107,7 @@ jobs:
           git push origin diff-img --quiet > /dev/null
           CURRENTCOMMIT=$(git rev-parse HEAD)
           echo "current_commit=$CURRENTCOMMIT" >> $GITHUB_ENV
-<<<<<<< HEAD
-             
-=======
 
->>>>>>> 056bae4... Update pullrequest-ci.yml
       - name: Electric Rule Check
         uses: actions/upload-artifact@v2
         with:
@@ -133,8 +129,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '👋 Thanks for sharing!<br /><table><tr><td><img src="https://github.com/$GITHUB_ACTOR/pslab-hardware/blob/${{env.current_commit}}/diff-front.png"></td><td><img src="https://github.com/$GITHUB_ACTOR/pslab-hardware/blob/${{env.current_commit}}/diff-bottom.png"></td></tr><tr><td colspan="2"><img src="https://github.com/$GITHUB_ACTOR/pslab-hardware/blob/$CURRENTCOMMIT/diff-schematic.png"></td></tr></table>'
-<<<<<<< HEAD
+              body: '👋 Thanks for sharing!<br /><table><tr><td><img src="https://github.com/$GITHUB_ACTOR/pslab-hardware/blob/${{env.current_commit}}/diff-front.png"></td><td><img src="https://github.com/$GITHUB_ACTOR/pslab-hardware/blob/${{env.current_commit}}/diff-bottom.png"></td></tr><tr><td colspan="2"><img src="https://github.com/$GITHUB_ACTOR/pslab-hardware/blob/${{env.current_commit}}/diff-schematic.png"></td></tr></table>'
             })
-=======
->>>>>>> 056bae4... Update pullrequest-ci.yml
