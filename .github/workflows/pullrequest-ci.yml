@@ -107,6 +107,7 @@ jobs:
           git push origin diff-img --quiet > /dev/null
           CURRENTCOMMIT=$(git rev-parse HEAD)
           echo "current_commit=$CURRENTCOMMIT" >> $GITHUB_ENV
+          echo "current_actor=$GITHUB_ACTOR" >> $GITHUB_ENV
 
       - name: Electric Rule Check
         uses: actions/upload-artifact@v2
@@ -129,5 +130,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '👋 Thanks for sharing! <br /><table><tr><td><img src="https://github.com/${{ context.repo.owner }}/pslab-hardware/raw/${{env.current_commit}}/diff-front.png" alt="diff-front"></td><td><img src="https://github.com/${{ context.repo.owner }}/pslab-hardware/raw/${{env.current_commit}}/diff-bottom.png" alt="diff-bottom"></td></tr><tr><td><img src="https://github.com/${{ context.repo.owner }}/pslab-hardware/raw/${{env.current_commit}}/diff-power.png" alt="diff-power"></td><td><img src="https://github.com/${{ context.repo.owner }}/pslab-hardware/raw/${{env.current_commit}}/diff-signal.png" alt="diff-signal"></td></tr><tr><td colspan="2"><img src="https://github.com/${{ context.repo.owner }}/pslab-hardware/raw/${{env.current_commit}}/diff-schematic.png" alt="diff-schematic"></td></tr></table>'
+              body: '👋 Thanks for sharing!<br /><table><tr><td><img src="https://github.com/${{env.current_actor}}/pslab-hardware/raw/${{env.current_commit}}/diff-front.png" alt="diff-front"></td><td><img src="https://github.com/${{env.current_actor}}/pslab-hardware/raw/${{env.current_commit}}/diff-bottom.png" alt="diff-bottom"></td></tr><tr><td><img src="https://github.com/${{env.current_actor}}/pslab-hardware/raw/${{env.current_commit}}/diff-power.png" alt="diff-power"></td><td><img src="https://github.com/${{env.current_actor}}/pslab-hardware/raw/${{env.current_commit}}/diff-signal.png" alt="diff-signal"></td></tr><tr><td colspan="2"><img src="https://github.com/${{env.current_actor}}/pslab-hardware/raw/${{env.current_commit}}/diff-schematic.png" alt="diff-schematic"></td></tr></table>'
             })
