@@ -105,6 +105,8 @@ jobs:
           git add .
           git commit -m "chore: updating board diff images for #${{ github.event.number }}"
           git push origin diff-img --quiet > /dev/null
+          CURRENTCOMMIT=$(git rev-parse HEAD)
+          echo "::set-env name=CURRENTCOMMIT::$CURRENTCOMMIT"
 
       - name: Pull request comment
         uses: actions/github-script@v4
@@ -115,7 +117,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '👋 Thanks for sharing!'
+              body: '👋 Thanks for sharing!<br /><table><tr><td><img src="https://github.com/$GITHUB_ACTOR/pslab-hardware/blob/$CURRENTCOMMIT/diff-front.png"></td><td><img src="https://github.com/$GITHUB_ACTOR/pslab-hardware/blob/$CURRENTCOMMIT/diff-bottom.png"></td></tr><tr><td colspan="2"><img src="https://github.com/$GITHUB_ACTOR/pslab-hardware/blob/$CURRENTCOMMIT/diff-schematic.png"></td></tr></table>'
             })
              
       - name: Electric Rule Check
